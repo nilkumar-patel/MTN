@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; background: #eee;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.login-page {
+    max-width: 350px;
+    margin: 50px auto 0 auto;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
