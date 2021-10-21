@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -21,6 +21,8 @@ import { Router } from '@angular/router';
 import { login } from '../auth.actions';
 import { tap } from 'rxjs/operators';
 import { AuthActions } from '../action-types';
+import { AppComponent } from 'src/app/app.component';
+import { of } from 'rxjs';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -33,7 +35,11 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      providers: [AuthService, HttpClient, provideMockStore({ initialState })],
+      providers: [
+        AuthService,
+        HttpClient,
+        provideMockStore({ initialState })
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
         RouterTestingModule.withRoutes([]),
@@ -54,7 +60,9 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     store = fixture.debugElement.injector.get(Store);
-    store.dispatch({ type: 'login', payload: ''})
+    store.dispatch({ type: 'login', payload: '' });
+    // auth = new AuthService();
+    auth = TestBed.get(AuthService);
   });
 
   it('should create', () => {
@@ -71,16 +79,46 @@ describe('LoginComponent', () => {
     component.login();
   });
 
+  it('form invalid when empty', () => {
+    expect(component.form.valid).toBeFalsy();
+  });
+
+  it('email field validity', () => {
+    let email = component.form.controls['email'];
+    expect(email.valid).toBeFalsy(); 
+  });
+
   it('if on #login() is valid"', () => {
-    expect(component.form.invalid).toBeTruthy();
-    expect(store).toBeDefined();
-    // auth.login('abc@abc.com', '1223').pipe(
-    //   tap((res) => {
-    //     var mockStore = fixture.debugElement.injector.get(Store);
-    //     var storeSpy = spyOn(mockStore, 'dispatch')
-    //   },
-    //   (error: any) => {}
-    // ));
+    expect(component.form.valid).toBeFalsy();
+    component.form.controls['email'].setValue("test@test.com");
+    component.form.controls['password'].setValue("123456789");
+    expect(component.form.valid).toBeTruthy();
+    // const user = {
+    //   email: '123',
+    //   password: '123'
+    // }
+    // let test = spyOn(auth, 'login').and.returnValue( of (user));
+    const customers: any = [
+      {
+          email: '123',
+          password: '123'
+        }
+    ]; 
+    let test = spyOn(auth, 'login').and.returnValue(of(customers));
+    
+    // spyOn(auth, 'login').and.callThrough();
+    // auth.login('email', 'password').pipe(
+    //   tap((user) => {
+    //     // this.store.dispatch(login({ user }));
+    //     // this.router.navigateByUrl('/home');
+    //   })
+    // )
     component.login();
+    fixture.detectChanges();
+    expect(test).toHaveBeenCalled();
+    // expect(auth.login).toHaveBeenCalledWith('123', 'password');
+    // expect(component.login).toEqual({ email: '123', password: 'Product' });
+    // expect(auth.login).toHaveBeenCalledTimes(1);
+    
   });
 });
