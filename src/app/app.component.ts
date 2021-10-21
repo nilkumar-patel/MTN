@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import {AppState} from './reducers';
-import {login, logout} from './auth/auth.actions';
+import { AppState } from './reducers';
+import { login, logout } from './auth/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import {login, logout} from './auth/auth.actions';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor( private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) {}
   ngOnInit() {
     const userProfile = localStorage.getItem('user');
 

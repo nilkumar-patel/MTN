@@ -7,12 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store, StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
-import { login } from './auth/auth.actions';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 describe('AppComponent', () => {
-  let dispatchSpy;
-  let store: MockStore;
   const initialState = {};
 
   beforeEach(async () => {
@@ -44,16 +41,4 @@ describe('AppComponent', () => {
     app.ngOnInit();
   });
 
-  // it('load on #ngOnInit() if userexist', () => { 
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.componentInstance;
-  //   store = TestBed.inject(MockStore);
-  //   const userProfile = 'abc'
-  //   expect(userProfile).toBe("abc")
-  //   const storeSpy = spyOn(store, 'dispatch').and.callThrough();
-  //   app.ngOnInit();
-  //   fixture.detectChanges();
-  //   expect(storeSpy).toBeDefined();
-  //   expect(storeSpy).toHaveBeenCalledTimes(1);
-  // });
 });
