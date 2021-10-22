@@ -73,7 +73,7 @@ describe('LoginComponent', () => {
   it('if on #login() is valid"', () => {
     expect(component.form.valid).toBeFalsy();
     component.form.controls['email'].setValue('test@test.com');
-    component.form.controls['password'].setValue('123456789');
+    component.form.controls['password'].setValue('cityslicka');
     expect(component.form.valid).toBeTruthy();
     const customers: any = [
       {

@@ -36,21 +36,27 @@ export class LoginComponent {
     });
   }
 
-
   login() {
     const val = this.form.value;
     if (!this.form.invalid) {
-      this.auth
-        .login(val.email, val.password)
-        .pipe(
-          tap((user) => {
-            this.store.dispatch(login({ user }));
-            this.router.navigateByUrl('/home');
-          })
-        )
-        .subscribe(noop, () =>
-         this.errMsg = 'Unauthorized login (Invalid username and password)'
-        );
+      if (val.password !== 'cityslicka') {
+        this.errMsg = 'Please enter correct password';
+      } else {
+        this.auth
+          .login(val.email, val.password)
+          .pipe(
+            tap((user) => {
+              this.store.dispatch(login({ user }));
+              this.router.navigateByUrl('/home');
+            })
+          )
+          .subscribe(
+            noop,
+            () =>
+              (this.errMsg =
+                'Unauthorized login (Invalid username and password)')
+          );
+      }
     }
   }
 }
