@@ -8,7 +8,7 @@ import {
   on,
 } from '@ngrx/store';
 import { User } from '../model/user.model';
-import { AuthActions } from '../action-types';
+import { AuthActions } from '../../store/action-types';
 
 export interface AuthState {
   user: any;

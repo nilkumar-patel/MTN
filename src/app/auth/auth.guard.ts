@@ -3,9 +3,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {AppState} from '../reducers';
 import {select, Store} from '@ngrx/store';
-import {isLoggedIn} from './auth.selectors';
+import {isLoggedIn} from '../store/auth.selectors';
 import {tap} from 'rxjs/operators';
-import {login, logout} from './auth.actions';
+import {login, logout} from '../store/auth.actions';
 
 
 @Injectable()

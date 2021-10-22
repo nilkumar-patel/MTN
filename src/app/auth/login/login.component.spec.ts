@@ -7,7 +7,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store, StoreModule } from '@ngrx/store';
-import { AuthService } from '../auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { LoginComponent } from './login.component';
@@ -15,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;

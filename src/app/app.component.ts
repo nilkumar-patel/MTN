@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './reducers';
-import { login, logout } from './auth/auth.actions';
+import { login } from './store/auth.actions';
 
 @Component({
   selector: 'app-root',

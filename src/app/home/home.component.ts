@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../reducers';
-import { logout } from '../auth/auth.actions';
 import { Observable } from 'rxjs';
-import { isLoggedIn } from '../auth/auth.selectors';
+import { isLoggedIn } from '../store/auth.selectors';
+import { logout } from '../store/auth.actions';
 
 @Component({
   selector: 'app-home',
