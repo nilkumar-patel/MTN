@@ -55,10 +55,6 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('load on #ngOnInit()"', () => {
-    expect(component).toBeTruthy();
-    component.ngOnInit();
-  });
 
   it('load on #login()"', () => {
     expect(component).toBeTruthy();

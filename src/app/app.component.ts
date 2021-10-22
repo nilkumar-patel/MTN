@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './reducers';
@@ -9,7 +9,7 @@ import { login, logout } from './auth/auth.actions';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
   ngOnInit() {
     const userProfile = localStorage.getItem('user');

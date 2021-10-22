@@ -14,8 +14,9 @@ import { AuthActions } from '../action-types';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   form: FormGroup;
+  errMsg: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -36,7 +37,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
 
   login() {
     const val = this.form.value;
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           })
         )
         .subscribe(noop, () =>
-          alert('Unauthorized login (Invalid username and password)')
+         this.errMsg = 'Unauthorized login (Invalid username and password)'
         );
     }
   }

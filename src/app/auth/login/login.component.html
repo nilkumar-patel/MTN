@@ -13,6 +13,9 @@
         <mat-error *ngIf="form.controls['email'].hasError('required')">
           email is required
         </mat-error>
+        <mat-error *ngIf="form.controls['email'].errors?.email">
+          Please enter valid email
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -26,7 +29,7 @@
           required
         />
         <mat-error *ngIf="form.controls['password'].errors?.minlength">
-          password is sort
+          password must be of minimum 6 characters
         </mat-error>
         <mat-error *ngIf="form.controls['password'].hasError('required')">
           password is required
@@ -34,6 +37,7 @@
       </mat-form-field>
 
       <button mat-raised-button color="primary" (click)="login()">Login</button>
+      <mat-error>{{errMsg}}</mat-error> 
     </form>
   </mat-card-content>
 </mat-card>

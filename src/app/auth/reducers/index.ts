@@ -12,10 +12,12 @@ import { AuthActions } from '../action-types';
 
 export interface AuthState {
   user: any;
+  isUserLoggedIn: boolean;
 }
 
 export const initialAuthState: AuthState = {
   user: undefined,
+  isUserLoggedIn: false
 };
 
 export const authReducer = createReducer(
@@ -24,12 +26,14 @@ export const authReducer = createReducer(
   on(AuthActions.login, (state, action) => {
     return {
       user: action.user,
+      isUserLoggedIn: true
     };
   }),
 
   on(AuthActions.logout, (state, action) => {
     return {
       user: undefined,
+      isUserLoggedIn: false
     };
   })
 );
