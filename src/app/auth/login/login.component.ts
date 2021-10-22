@@ -40,7 +40,7 @@ export class LoginComponent {
     const val = this.form.value;
     if (!this.form.invalid) {
       if (val.password !== 'cityslicka') {
-        this.errMsg = 'Please enter correct password';
+        this.errMsg = 'Unauthorized login (Invalid username and password)';
       } else {
         this.auth
           .login(val.email, val.password)
